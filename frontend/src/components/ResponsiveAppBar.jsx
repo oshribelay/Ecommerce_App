@@ -11,7 +11,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 
-const pages = ['Supplements', 'Apperal', 'Get In Touch'];
+
+const pages = ['Supplements', 'Apparel', 'Get In Touch'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -20,8 +21,11 @@ function ResponsiveAppBar() {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (event) => {
     setAnchorElNav(null);
+    var redirectUrl = event.currentTarget.innerText;
+    redirectUrl = redirectUrl.replace(/\s+/g, '-').toLowerCase();
+    window.location.replace(`http://localhost:3000/${redirectUrl}`);
   };
 
 
@@ -112,7 +116,7 @@ function ResponsiveAppBar() {
               >
                 {page}
               </Button>
-            ))}
+            ))} 
           </Box>
         </Toolbar>
       </Container>

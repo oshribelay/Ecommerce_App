@@ -1,14 +1,22 @@
 import './App.css';
-import ResponsiveAppBar from './components/ResponsiveAppBar';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from 'react';
+import NoPage from "./components/NoPage";
+import Layout from "./components/Layout";
+import Home from "./components/Home";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <ResponsiveAppBar />
-        
-      </header>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
     </div>
   );
 }
