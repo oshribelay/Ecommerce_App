@@ -30,6 +30,7 @@ export default function Item(props) {
     setExpanded(!expanded);
   };
 
+  console.log(props.imageUrl)
   return (
     <Card sx={{ width: "320px", float: "left", mx: "50px", my: "20px" }}>
       <CardHeader
@@ -37,7 +38,7 @@ export default function Item(props) {
         subheader={props.price}
         /* sx to allign the text later */
       />
-      <CardMedia component="img" height="194" image={props.imageUrl} />
+      <CardMedia component="img" height="256" src={props.imageUrl} />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.shortDescription}
