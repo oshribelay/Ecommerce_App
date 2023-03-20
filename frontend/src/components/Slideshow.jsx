@@ -1,35 +1,33 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import MobileStepper from "@mui/material/MobileStepper";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import SwipeableViews from "react-swipeable-views";
+import { autoPlay } from "react-swipeable-views-utils";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: 'Gym',
+    label: "Gym",
     imgPath:
-      'https://assets.website-files.com/60e1ad729b2e9d1e32a8d511/60e506a592df5a105c083448_Banner%20Image%20-%20Gym.jpg',
+      "https://assets.website-files.com/60e1ad729b2e9d1e32a8d511/60e506a592df5a105c083448_Banner%20Image%20-%20Gym.jpg",
   },
   {
-    label: 'Good Protein',
+    label: "Good Protein",
     imgPath:
-      'https://7bestthings.com/wp-content/uploads/2022/11/almond-protein-powder.jpg',
+      "https://7bestthings.com/wp-content/uploads/2022/11/almond-protein-powder.jpg",
   },
   {
-    label: 'Buff Guy',
-    imgPath:
-      'https://www.neulife.com/content/images/thumbs/0026638.jpeg',
-  }
+    label: "Buff Guy",
+    imgPath: "https://www.neulife.com/content/images/thumbs/0026638.jpeg",
+  },
 ];
-
 
 export default function Slideshow() {
   const theme = useTheme();
@@ -54,17 +52,17 @@ export default function Slideshow() {
         square
         elevation={0}
         sx={{
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           height: 0,
           pl: 2,
-          bgcolor: 'background.default',
+          bgcolor: "background.default",
         }}
       >
-        <Typography align={'center'}>{images[activeStep].label}</Typography>
+        <Typography align={"center"}>{images[activeStep].label}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
@@ -76,10 +74,10 @@ export default function Slideshow() {
                 component="img"
                 sx={{
                   height: 550,
-                  display: 'block',
+                  display: "block",
                   maxWidth: 2560,
-                  overflow: 'hidden',
-                  width: '100%',
+                  overflow: "hidden",
+                  width: "100%",
                 }}
                 src={step.imgPath}
                 alt={step.label}
@@ -99,7 +97,7 @@ export default function Slideshow() {
             disabled={activeStep === maxSteps - 1}
           >
             Next
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
             ) : (
               <KeyboardArrowRight />
@@ -108,7 +106,7 @@ export default function Slideshow() {
         }
         backButton={
           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
+            {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (
               <KeyboardArrowLeft />

@@ -10,3 +10,9 @@ body {
   background-size: cover;
   height: 450px;
 }
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
