@@ -14,17 +14,17 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: "Gym",
+    label: "",
     imgPath:
       "https://assets.website-files.com/60e1ad729b2e9d1e32a8d511/60e506a592df5a105c083448_Banner%20Image%20-%20Gym.jpg",
   },
   {
-    label: "Good Protein",
+    label: "",
     imgPath:
       "https://7bestthings.com/wp-content/uploads/2022/11/almond-protein-powder.jpg",
   },
   {
-    label: "Buff Guy",
+    label: "",
     imgPath: "https://www.neulife.com/content/images/thumbs/0026638.jpeg",
   },
 ];

@@ -16,3 +16,36 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.form {
+  display: inline-block;
+  text-align: center;
+  padding-top: 10%;
+  width: 40%;
+}
+
+h1 {
+  font-family: 'Sacramento', cursive;
+  font-weight: 700;
+  font-size: 46px;
+}
+
+.form-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.email-area {
+  margin-top: 20px;
+}
+
+.message-area {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.name-input {
+  text-align: center;
+  display: flex;
+  
+}
