@@ -29,10 +29,9 @@ export default function Item(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-  console.log(props.imageUrl)
+  
   return (
-    <Card sx={{ width: "320px", float: "left", mx: "50px", my: "20px" }}>
+    <Card name={props.name} sx={{ width: "320px", float: "left", mx: "50px", my: "20px" }}>
       <CardHeader
         title={props.title}
         subheader={props.price}
