@@ -43,7 +43,7 @@ export default function Item(props) {
     );
     const { priceInCents, name, price, title, imageUrl } = res.data;
 
-    dispatch(addItem({ name: name, price: price }));
+    dispatch(addItem({ name: name, price: price, priceInCents: priceInCents }));
     console.log(cart)
   }
 

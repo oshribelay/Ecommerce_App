@@ -7,11 +7,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const { name, price } = action.payload;
+      const { name, price, priceInCents } = action.payload;
       if (state[name]) {
         state[name].count += 1;
       } else {
-        state[name] = { price: price, count: 1 };
+        state[name] = { price: price, count: 1, priceInCents: priceInCents };
       }
     },
   },

@@ -73,7 +73,7 @@ export default function Home(props) {
       <div className="item-container">
       {items.map(
           (
-            { name, title, price, shortDescription, itemId, first, second },
+            { name, title, price, shortDescription, itemId, first, second, priceInCents },
             idx
           ) => {
             return (
@@ -82,6 +82,7 @@ export default function Home(props) {
                 name={name}
                 key={idx}
                 id={idx}
+                priceInCents={priceInCents}
                 title={title}
                 price={price}
                 shortDescription={shortDescription}
