@@ -10,10 +10,13 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleClicked } from '../reducers/clicked';
 
 const pages = ["Supplements", "Apparel", "Get In Touch"];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -25,6 +28,12 @@ function ResponsiveAppBar() {
     var redirectUrl = event.currentTarget.innerText;
     redirectUrl = redirectUrl.replace(/\s+/g, "-").toLowerCase();
     window.location.replace(`http://localhost:3000/${redirectUrl}`);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(toggleClicked());
   };
 
   return (
@@ -46,7 +55,7 @@ function ResponsiveAppBar() {
             component="a"
             href="/"
             sx={{
-              mr: "50%",
+              mr: "10%",
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
@@ -115,16 +124,37 @@ function ResponsiveAppBar() {
           >
             Beast Nutrition
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <IconButton
+            onClick={ handleClick }
+          >
+            <ShoppingCartIcon
+              sx={{ color: "white", display: { xs: "flex", md: "none" } }}
+            />
+          </IconButton>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              pl: "35%",
+              maxWidth: "50%",
+            }}
+          >
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block", mr: "20px" }}
+                sx={{ my: 2, color: "white", display: "block", mx: "10px" }}
               >
                 {page}
               </Button>
             ))}
+            <IconButton
+              onClick={ handleClick }
+            >
+              <ShoppingCartIcon
+                sx={{ color: "white", display: { xs: "none", md: "flex" } }}
+              />
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

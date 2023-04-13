@@ -3,18 +3,36 @@ const Item = require("./DB/models/items");
 const app = express();
 const cors = require("cors");
 require("./DB/mongoose");
+require("dotenv").config();
 
 const corsOptions = {
   origin: "http://localhost:3000",
   optionsSuccessStatus: 200,
-  methods: "GET, POST"
+  methods: "GET, POST",
 };
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
+
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
+
+app.post("/create-checkout-session", async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: req.body.items,
+      mode: "payment",
+      success_url: `${process.env.FRONTED_URL}/success`,
+      cancel_url: `${process.env.FRONTED_URL}/cancel`,
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.get("/supplements", (req, res) => {
   // this route fetches all the items in the item collection
@@ -29,7 +47,7 @@ app.get("/supplements", (req, res) => {
 
 app.get("/supplements/:id", (req, res) => {
   // this route takes an item id in the URL and fetches the item that corresponds with that id
-  Item.findOne({ _id: req.params.id })
+  Item.findOne({ name: req.params.id })
     .then((items) => {
       if (!items) {
         return res.status(404).send();

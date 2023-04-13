@@ -1,11 +1,10 @@
-import React from "react";
+import React , { useEffect, useState }from "react";
 import Item from "./Item";
 import Slideshow from "./Slideshow";
-import creatine from "../images/creatine.jpeg";
-import whey from "../images/whey.jpeg";
-import bar from "../images/bar.jpeg";
+import axios from "axios";
+import Checkout from "./Checkout";
 
-const items = [
+/*const items = [
   {
     title: "Creatine Monohydrate Powder",
     price: "45.00 $",
@@ -52,19 +51,35 @@ const items = [
     },
   },
 ];
+*/
+export default function Home(props) {
+  const [items, setItems] = useState([]);
 
-export default function Home() {
+  useEffect(() => {
+    async function fetchItems() {
+      try {
+        const res = await axios.get("http://localhost:8000/supplements");
+        setItems(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchItems();
+  }, []);
+
   return (
     <>
       <Slideshow />
       <div className="item-container">
-        {items.map(
+      {items.map(
           (
-            { title, price, shortDescription, itemId, first, second },
+            { name, title, price, shortDescription, itemId, first, second },
             idx
           ) => {
             return (
               <Item
+                handleClick={props.handleClick}
+                name={name}
                 key={idx}
                 id={idx}
                 title={title}
@@ -79,6 +94,7 @@ export default function Home() {
             );
           }
         )}
+        <Checkout />
       </div>
     </>
   );

@@ -10,7 +10,10 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { AddShoppingCart, ExpandMore } from '@mui/icons-material';
+import axios from "axios";
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem } from '../reducers/cart';
+import { AddShoppingCart, ExpandMore } from "@mui/icons-material";
 
 const Expand = styled((props) => {
   const { expand, ...other } = props;
@@ -29,9 +32,26 @@ export default function Item(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  
+
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  async function handleClick(event) {
+    const itemAdded = event.currentTarget.id;
+    const res = await axios.get(
+      `http://localhost:8000/supplements/${itemAdded}`
+    );
+    const { priceInCents, name, price, title, imageUrl } = res.data;
+
+    dispatch(addItem({ name: name, price: price }));
+    console.log(cart)
+  }
+
   return (
-    <Card name={props.name} sx={{ width: "320px", float: "left", mx: "50px", my: "20px" }}>
+    <Card
+      name={props.name}
+      sx={{ width: "320px", float: "left", mx: "50px", my: "20px" }}
+    >
       <CardHeader
         title={props.title}
         subheader={props.price}
@@ -44,7 +64,11 @@ export default function Item(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          id={props.name}
+          aria-label="add to favorites"
+          onClick={handleClick}
+        >
           <AddShoppingCart />
         </IconButton>
         <Expand

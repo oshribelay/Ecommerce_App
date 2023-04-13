@@ -1,10 +1,10 @@
 module.exports = Object.freeze({
-    password: 'Password1',
     itemsArray: [
         {
           name: "creatine",  
           title: "Creatine Monohydrate Powder",
           price: "45.00 $",
+          priceInCents: "450000",
           itemId: "",
           shortDescription:
             "One of the most highly researched forms of creatine in the world — our hard-hitting powder is scientifically proven to increase physical performance, by improving overall power.",
@@ -23,6 +23,7 @@ module.exports = Object.freeze({
           name: "whey",  
           title: "Impact Whey Protein",
           price: "52.00 $",
+          priceInCents: "520000",
           itemId: "",
           shortDescription: "Premium whey packed with 21g of protein per serving, for the everyday protein you need from a quality source — with all-natural nutritionals, it's ideal for all of your fitness goals. ",
           first: {
@@ -38,6 +39,7 @@ module.exports = Object.freeze({
           name: "bar",
           title: "Impact Protein Bar",
           price: "64.00 $",
+          priceInCents: "640000",
           itemId: "",
           shortDescription: "Introducing our tastiest protein bar ever. Yes, really! But don’t just take our word for it. Our Impact Protein Bars are a triple-layered delight. With a soft and chewy low sugar caramel core",
           first: {

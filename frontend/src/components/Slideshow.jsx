@@ -87,6 +87,7 @@ export default function Slideshow() {
         ))}
       </AutoPlaySwipeableViews>
       <MobileStepper
+        sx={{backgroundColor: 'transparent'}}
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
