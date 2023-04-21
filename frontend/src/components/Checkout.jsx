@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleClicked } from '../reducers/clicked';
 import { Card, cardActionAreaClasses, Dialog, DialogActions, DialogContent, Typography , CardContent} from '@mui/material';
@@ -12,14 +13,26 @@ export default function Checkout(props) {
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     
-    function calculateTotal(itemsObject) {
+    function calculateTotal() {
         var totalAmount = 0;
-        let keysList = Object.keys(itemsObject);
+        let keysList = Object.keys(cart);
         for (let key in keysList) {
-            let itemAmount = (cart[keysList[key]].priceInCents * cart[keysList[key]].count) / 10000;
+            let itemAmount = (cart[keysList[key]].priceInCents * cart[keysList[key]].count) / 100;
             totalAmount += itemAmount;
         }
         return totalAmount;
+    }
+
+    async function goToCheckout() {
+        try {
+            const res = await axios.post("http://localhost:8000/create-checkout-session", {items: cart}, {headers: {
+                "Content-Type": 'application/json'
+            }
+        });
+            window.location.replace(res.data.url);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const handleClick = () => {
@@ -52,9 +65,9 @@ export default function Checkout(props) {
                 </TableContainer>
                 <Stack direction="row" justifyContent="space-between" paddingBottom="20%">
                     <Typography sx={{width: "50%", textAlign: "left", pt: 2, fontWeight: "40px"}}>
-                        Sub-Total: {calculateTotal(cart)} USD
+                        Sub-Total: {calculateTotal()} USD
                     </Typography>
-                    <Button variant="contained" sx={{ width: "50%", backgroundColor: "green" }}>Checkout</Button>    
+                    <Button variant="contained" onClick={goToCheckout} sx={{ width: "50%", backgroundColor: "green" }}>Checkout</Button>    
                 </Stack>      
                 <Typography variant="body1" sx={{ position: "absolute", bottom: 0, textAlign: "center", left: 0, right: 0, p: 2, marginTop: "-40px" }}>
                     Thank you for shopping with us!

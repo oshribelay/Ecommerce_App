@@ -37,7 +37,7 @@ export const options = {
     },
     modes: {
       attract: { distance: 200, duration: 0.4, speed: 1 },
-      bounce: { distance: 200 },
+      bounce: false,//{ distance: 200 },
       bubble: { distance: 400, duration: 2, opacity: 0.8, size: 40 },
       connect: { distance: 80, links: { opacity: 0.5 }, radius: 60 },
       grab: {

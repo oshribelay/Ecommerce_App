@@ -50,7 +50,7 @@ export default function Item(props) {
   return (
     <Card
       name={props.name}
-      sx={{ width: "320px", float: "left", mx: "50px", my: "20px" }}
+      sx={{ width: "320px", float: "left", mx: "50px", my: "20px", backgroundColor: "rgba(255,255,255,0)" }}
     >
       <CardHeader
         title={props.title}
