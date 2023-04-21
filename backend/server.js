@@ -1,5 +1,6 @@
 const express = require("express");
 const Item = require("./DB/models/items");
+const bodyParser = require('body-parser');
 const app = express();
 const cors = require("cors");
 require("./DB/mongoose");
@@ -15,18 +16,33 @@ app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // enable cross-origin support
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
   try {
+    var lineItems = []
+    console.log(req.body)
+    Object.keys(req.body.items).forEach(function (key) {
+        lineItems.push( { price_data: {  
+          currency: 'usd',
+          product_data: {
+            name: key
+          }, 
+          unit_amount: req.body.items[key].priceInCents
+        },
+        quantity: req.body.items[key].count
+       } )
+    })
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: req.body.items,
+      line_items: lineItems,
       mode: "payment",
-      success_url: `${process.env.FRONTED_URL}/success`,
-      cancel_url: `${process.env.FRONTED_URL}/cancel`,
+      success_url: `${process.env.FRONTEND_URL}/success`,
+      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
     res.json({ url: session.url });
   } catch (err) {
