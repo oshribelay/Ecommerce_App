@@ -9,6 +9,9 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import image1 from "../images/creatine-stock.jpeg";
+import image2 from "../images/shake-stock.jpeg";
+import image3 from "../images/whey-stock.jpeg";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -16,16 +19,16 @@ const images = [
   {
     label: "",
     imgPath:
-      "https://assets.website-files.com/60e1ad729b2e9d1e32a8d511/60e506a592df5a105c083448_Banner%20Image%20-%20Gym.jpg",
+      image1,
   },
   {
     label: "",
     imgPath:
-      "https://7bestthings.com/wp-content/uploads/2022/11/almond-protein-powder.jpg",
+      image2,
   },
   {
     label: "",
-    imgPath: "https://www.neulife.com/content/images/thumbs/0026638.jpeg",
+    imgPath: image3,
   },
 ];
 
@@ -68,7 +71,7 @@ export default function Slideshow() {
         enableMouseEvents
       >
         {images.map((step, index) => (
-          <div key={step.label}>
+          <div key={index}>
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"
@@ -78,6 +81,7 @@ export default function Slideshow() {
                   maxWidth: 2560,
                   overflow: "hidden",
                   width: "100%",
+                  objectFit: "cover"
                 }}
                 src={step.imgPath}
                 alt={step.label}

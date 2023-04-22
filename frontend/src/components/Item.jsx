@@ -14,6 +14,9 @@ import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem } from '../reducers/cart';
 import { AddShoppingCart, ExpandMore } from "@mui/icons-material";
+import bar from "../images/bar.png"
+import whey from "../images/whey.png"
+import creatine from "../images/creatine.png"
 
 const Expand = styled((props) => {
   const { expand, ...other } = props;
@@ -57,7 +60,10 @@ export default function Item(props) {
         subheader={props.price}
         /* sx to allign the text later */
       />
-      <CardMedia component="img" height="256" src={props.imageUrl} />
+      <CardMedia component="img" height="256" src={ props.name === "bar" ? bar :
+                                                    props.name === "whey" ? whey :
+                                                    props.name === "creatine" ? creatine :
+                                                    ""} />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {props.shortDescription}

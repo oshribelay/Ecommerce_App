@@ -80,7 +80,7 @@ export default function Home(props) {
               <Item
                 handleClick={props.handleClick}
                 name={name}
-                key={idx}
+                key={name}
                 id={idx}
                 priceInCents={priceInCents}
                 title={title}
