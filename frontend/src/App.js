@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Apparel from "./components/Apparel";
 import Supplements from "./components/Supplements";
 import Contact from "./components/Contact";
+import Success from "./components/Success";
 import axios from "axios";
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
             <Route index element={<Home handleClick={handleClick} />} />
             <Route path="/apparel" element={<Apparel />} />
             <Route path="get-in-touch" element={<Contact />} />
+            <Route path="success" element={<Success />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

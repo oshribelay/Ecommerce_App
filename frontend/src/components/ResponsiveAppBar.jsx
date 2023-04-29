@@ -14,7 +14,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleClicked } from '../reducers/clicked';
 
-const pages = ["Supplements", "Apparel", "Get In Touch"];
+const pages = ["Get In Touch"];
 
 function ResponsiveAppBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -137,6 +137,8 @@ function ResponsiveAppBar(props) {
               display: { xs: "none", md: "flex" },
               pl: "35%",
               maxWidth: "50%",
+              justifyContent: "flex-end",
+              pr: "10px"
             }}
           >
             {pages.map((page) => (
