@@ -42,7 +42,7 @@ app.post("/create-checkout-session", async (req, res) => {
       line_items: lineItems,
       mode: "payment",
       success_url: `${process.env.FRONTEND_URL}/success`,
-      cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+      cancel_url: `${process.env.FRONTEND_URL}`,
     });
     res.json({ url: session.url });
   } catch (err) {
